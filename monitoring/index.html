@@ -189,7 +189,7 @@ occurred on the validation server (if any) and shows when the TSLs
 (and/or their signing certificates) are about to expire. The simplest
 way to run this service is to issue a command shown below.</p>
 <p><strong>Run PDF validator monitoring Service</strong></p>
-<pre><code class="bash">java -jar pdf-validator-monitoring-4.5.RC1.jar
+<pre><code class="bash">java -jar pdf-validator-monitoring-1.0.1.RC1.jar
 </code></pre>
 
 <p>Default parameters for monitoring application are:</p>
@@ -203,7 +203,7 @@ monitoring.path=/pdf-validator-webapp/wService/validationService
 </code></pre>
 
 <p>You can override these properties by placing application.properties file
-in same directory where the <code>pdf-validator-monitoring-4.5.RC1.jar</code> is
+in same directory where the <code>pdf-validator-monitoring-1.0.1.RC1.jar</code> is
 located.</p>
 <h2 id="monitoring-service-response-values">Monitoring Service response values</h2>
 <p>To see the last monitoring request result You can navigate to URL with
@@ -260,7 +260,7 @@ list of TSL certificates. Following information is provided.</p>
   i.e WARNING</li>
 <li><strong>tslCertificateInfo</strong> - collection of all the countries TSLs that
   have been loaded into PDF Validator</li>
-<li><strong>loadingDiagnosticInfo</strong> - Additonal information when loading or
+<li><strong>loadingDiagnosticInfo</strong> - Additional information when loading or
   validating the TSL failed or loading time if no error was not
   encountered</li>
 <li><strong>signerCertificateValidUntil</strong> - TSL signing certificate expiration

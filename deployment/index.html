@@ -84,21 +84,21 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#deploying-pdf-validator-web-service">Deploying PDF Validator Web Service</a></li>
+                <li class="toctree-l3"><a href="#deploying-pdf-validation-web-service">Deploying PDF Validation Web Service</a></li>
                 
                     <li><a class="toctree-l4" href="#system-requirements">System requirements:</a></li>
                 
                     <li><a class="toctree-l4" href="#building-project-manually">Building project manually</a></li>
                 
-                    <li><a class="toctree-l4" href="#installing-the-pdf-validator-on-ubuntu-1504">Installing the PDF Validator on Ubuntu 15.04</a></li>
+                    <li><a class="toctree-l4" href="#option-1-installing-and-configuring-tomcat-using-apt-get-under-ubuntu-1504">Option 1: Installing and configuring Tomcat using apt-get under Ubuntu 15.04</a></li>
                 
-                    <li><a class="toctree-l4" href="#installing-the-pdf-validator-webapp-with-downloaded-apache-tomcat-for-development">Installing the PDF Validator webapp with downloaded Apache Tomcat for development</a></li>
-                
-                    <li><a class="toctree-l4" href="#system-checks-after-installation">System checks after installation</a></li>
+                    <li><a class="toctree-l4" href="#option-2-installing-and-configuring-tomcat-using-a-manual-download">Option 2: Installing and configuring Tomcat using a manual download</a></li>
                 
                     <li><a class="toctree-l4" href="#configuring-java-certificate-keystore-location">Configuring Java certificate keystore location</a></li>
                 
                     <li><a class="toctree-l4" href="#validation-request-maximum-size-limit">Validation request maximum size limit</a></li>
+                
+                    <li><a class="toctree-l4" href="#verifying-installation">Verifying installation</a></li>
                 
             
             </ul>
@@ -187,15 +187,15 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="deploying-pdf-validator-web-service">Deploying PDF Validator Web Service</h1>
+                <h1 id="deploying-pdf-validation-web-service">Deploying PDF Validation Web Service</h1>
 <h3 id="system-requirements">System requirements:</h3>
 <ul>
 <li>At least <strong>2GB of RAM</strong> on machine where the build is executed</li>
 <li>Minimum required Java version is <strong>Java 7u80</strong> but Java 8 is
    recommended</li>
 <li><strong>Maven 3</strong> to build project manually. (Any minor version update to
-   Mave 3 should work.)</li>
-<li><strong>Tomcat 7</strong> to run PDF validator web service. (Any minor version
+   Maven 3 should work.)</li>
+<li><strong>Tomcat 7</strong> to run PDF validation web service. (Any minor version
    update to should work.)</li>
 </ul>
 <blockquote>
@@ -206,7 +206,7 @@ Currently Java SDK version <strong>1.7.0_80</strong>.</p>
 <h2 id="building-project-manually">Building project manually</h2>
 <p>The easiest way to get all required files is to just download the ZIP
 file with all the required apps and services. But if You prefer to build
-the project manually, then just issue following Maven command:</p>
+the project manually, the following sections will describe how.</p>
 <h3 id="basic-build-process">Basic build process</h3>
 <p>If <code>git</code>, <code>mvn</code> and <code>javac</code> have been installed correctly then You can just issue these commands:</p>
 <pre><code class="bash">git clone https://github.com/open-eid/pdf-validator.git --recursive
@@ -229,7 +229,7 @@ sudo apt-get install -y tomcat7
 <p><strong>NOTE</strong>: Recommended way of using Tomcat is to download it directly from Apache Tomcat homepage.
 Reason for that is to get more platform independent deployment process.</p>
 </blockquote>
-<p>Next we need to clone the <code>pdf-validator</code> project I chose <code>$HOME</code> directory</p>
+<p>Next we need to clone the <code>pdf-validator</code> project. Here, I have chosen the <code>$HOME</code> directory.</p>
 <pre><code class="bash">cd $HOME
 git clone https://github.com/open-eid/pdf-validator.git --recursive
 cd pdf-validator
@@ -249,15 +249,14 @@ repositories.</p>
 very slow sometimes, so please be patient when building project the
 first time.</p>
 </blockquote>
-<h2 id="installing-the-pdf-validator-on-ubuntu-1504">Installing the PDF Validator on Ubuntu 15.04</h2>
+<h2 id="option-1-installing-and-configuring-tomcat-using-apt-get-under-ubuntu-1504">Option 1: Installing and configuring Tomcat using <em>apt-get</em> under Ubuntu 15.04</h2>
 <p>After build has completed successfully we can continue installing the build artifacts
 into our Tomcat web container. </p>
 <p>First make sure You have installed the Tomcat.</p>
 <pre><code class="bash">sudo apt-get update &amp;&amp; sudo apt-get install -y tomcat7
 </code></pre>
 
-<p>First we need to create directory where our certificate Java keystore reside in by issuing following 
-commands:</p>
+<p>Then we need to create directory where our certificate Java keystore will reside in:</p>
 <pre><code class="bash">cd /tmp
 sudo mkdir cert-store
 sudo chown tomcat7:root
@@ -265,7 +264,7 @@ sudo chmod 755 cert-store
 </code></pre>
 
 <p>Now we need to configure some environment variables to make PDF Validator work correctly.
-Make <code>bin</code> directory in <code>$CATALINA_HOME</code> and add <code>setenv.sh</code> file into it.</p>
+Create a <code>bin</code> directory in <code>$CATALINA_HOME</code> and add <code>setenv.sh</code> file into it.</p>
 <blockquote>
 <p><strong>NOTE:</strong> Paths below are based on default paths of package manger 
 installed version of <strong>Tomcat 7 of Ubuntu 15.04</strong></p>
@@ -291,7 +290,8 @@ URL path</p>
 <pre><code class="bash">sudo service tomcat7 restart
 </code></pre>
 
-<h2 id="installing-the-pdf-validator-webapp-with-downloaded-apache-tomcat-for-development">Installing the PDF Validator webapp with downloaded Apache Tomcat for development</h2>
+<h2 id="option-2-installing-and-configuring-tomcat-using-a-manual-download">Option 2: Installing and configuring Tomcat using a manual download</h2>
+<p>This step assumes that the project has already been built previously.</p>
 <ol>
 <li>Navigate the directory that holds the ZIP file (if you built the ZIP
     file using Maven, navigate to
@@ -338,7 +338,7 @@ unzip apache-tomcat-7.0.64.zip
 </li>
 <li>
 <p>Create context by issuing following commands relative to
-    <code>~/pdfvalidator</code> directory:</p>
+    <code>~/pdf-validator</code> directory:</p>
 <pre><code>mkdir -p apache-tomcat-7.0.64/conf/Catalina/localhost\
 touch apache-tomcat-7.0.64/conf/Catalina/localhost/pdf-validator-webapp.xml6.
 </code></pre>
@@ -351,7 +351,7 @@ touch apache-tomcat-7.0.64/conf/Catalina/localhost/pdf-validator-webapp.xml6.
 </li>
 <li>
 <p>Start the web service by issuing following command relative to
-<code>~/pdfvalidator</code></p>
+<code>~/pdf-validator</code></p>
 <pre><code>./apache-tomcat-7.0.64/bin/startup.sh start
 </code></pre>
 </li>
@@ -360,10 +360,6 @@ touch apache-tomcat-7.0.64/conf/Catalina/localhost/pdf-validator-webapp.xml6.
 list of WSDL endpoints.</p>
 </li>
 </ol>
-<h2 id="system-checks-after-installation">System checks after installation</h2>
-<p>After checking logs for errors You can navigate to <code>http://&lt;server-ip&gt;:8080/pdf-validator-webapp-1.0.1.RC1/wservice</code> with browser to 
-check if web service has started correctly and see similar web page as shown below.</p>
-<p><img alt="WSDL Endpoints after service has started" src="../img/working_web_service.png" /></p>
 <h2 id="configuring-java-certificate-keystore-location">Configuring Java certificate keystore location</h2>
 <p>When PDF Validator web application starts it creates <code>etc</code> directory relative to path of Tomcat startup script execution 
 location. In most of Linux distribution the default solution won't work because of lack of write permissions in startup forlder.</p>
@@ -400,7 +396,7 @@ http://localhost:8080/pdf-validator-webapp/wservice/validationService\\?wsdl
 </code></pre>
 
 <blockquote>
-<p><strong>NOTE</strong>: xmllint and pygmentize maybe required to be installed
+<p><strong>NOTE</strong>: <code>xmllint</code> and <code>pygmentize</code> maybe required to be installed
 separately</p>
 </blockquote>
 <p>Produced output should look similar to this:</p>
@@ -414,6 +410,12 @@ separately</p>
     &lt;/soap:Body&gt;
 &lt;/soap:Envelope&gt;
 </code></pre>
+
+<h2 id="verifying-installation">Verifying installation</h2>
+<p>After checking logs for errors You can navigate to <code>http://&lt;server-ip&gt;:8080/pdf-validator-webapp-1.0.1.RC1/wservice</code> with browser to
+check if web service has started correctly and see similar web page as shown below.</p>
+<p><img alt="WSDL Endpoints after service has started" src="../img/working_web_service.png" /></p>
+<p>For a more thorough validation of the installation, the next step can be configuring and running the <a href="../monitoring">built-in Monitoring Service</a>.</p>
               
             </div>
           </div>
