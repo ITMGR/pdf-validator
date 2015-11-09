@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Appendix 2 - Functional Requirements - PDF Validator Documentation</title>
+  
+
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  <link href="../../override.css" rel="stylesheet">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Appendix 2 - Functional Requirements";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> PDF Validator Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">PDF Validation Service Overview</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../architecture/">Architecture of the Core Service</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../policy/">Validation Policy</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../interface_description/">Interface description</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../deployment/">Deploying PDF Validator Web Service</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../tsl_downloader/">TSL file loading without internet</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../lotl_keystore/">Generating keystore for LOTL validation (optional)</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../logging/">Logging</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../monitoring/">Monitoring Service</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../testing/">Automation testing</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../issues/">Known Issues</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../documentation/">Documentation updating</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Appendixes</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../appendix-1/">Appendix 1 - Non-Functional Requirements</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Appendix 2 - Functional Requirements</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#appendix-2-functional-requirements">Appendix 2 - Functional Requirements</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../appendix-3/">Appendix 3 - Validation Policy</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../appendix-4/">Appendix 4 - Validation Constraint Configuration</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../appendix-5/">Appendix 5 - Sample Validation Policy Configuration</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../appendix-6/">Appendix 6 - ValidationService WSDL</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../appendix-7/">Appendix 7 - Sample PDF Validation Service Request</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../appendix-8/">Appendix 8 - Sample Response Data Blocks - positive response</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../appendix-9/">Appendix 9 - Sample Response Data Blocks – negative response</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../appendix-10/">Appendix 10 - Summary of modifications made to the DSS library</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">PDF Validator Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Appendixes &raquo;</li>
+        
+      
+    
+    <li>Appendix 2 - Functional Requirements</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="appendix-2-functional-requirements">Appendix 2 - Functional Requirements</h1>
+<ul>
+<li><strong>Name</strong>: OCSP Checking Disabled<ul>
+<li><strong>Description</strong>: Checking of Certificate's revocation information in
+  OCSP is disabled in PDF Validation Service</li>
+<li><strong>Must / Should</strong>: Must</li>
+<li><strong>FR-ID</strong>: DSS-FR-OCSP</li>
+</ul>
+</li>
+<li><strong>Name</strong>: CRL Checking Disabled<ul>
+<li><strong>Description</strong>: Checking of Certificate's revocation information in CRL is
+  disabled in PDF Validation Service</li>
+<li><strong>Must / Should</strong>: Must</li>
+<li><strong>FR-ID</strong>: DSS-FR-CRL</li>
+</ul>
+</li>
+<li><strong>Name</strong>: Multiple signature validation<ul>
+<li><strong>Description</strong>: IF PDF-document's signature dictionary contains multiple
+  signatures, then the Validation Service validate all signatures in document.</li>
+<li><strong>Must / Should</strong>: Must</li>
+<li><strong>FR-ID</strong>: DSS-FR-MULTISIGN</li>
+</ul>
+</li>
+<li><strong>Name</strong>: Signature Not Conforming to Policy / NFR<ul>
+<li><strong>Description</strong>: In case the Signature does not meet the Rules in Validation
+  Policy of NFR, an error is returned in response, containing:<ul>
+<li>error message</li>
+<li>information about possible cause of error.</li>
+</ul>
+</li>
+<li><strong>Must / Should</strong>: Must</li>
+<li><strong>FR-ID</strong>: DSS-FR-SIG_ERROR</li>
+</ul>
+</li>
+<li><strong>Name</strong>: PDF Not Conforming to Policy / NFR<ul>
+<li><strong>Description</strong>: In case the PDF-file does not meet the Rules in Validation
+  Policy of NFR, an error is returned in response, containing:<ul>
+<li>error message</li>
+<li>information about possible cause of error.</li>
+</ul>
+</li>
+<li><strong>Must / Should</strong>: Must</li>
+<li><strong>FR-ID</strong>: DSS-FR-PDF_ERROR</li>
+</ul>
+</li>
+<li><strong>Name</strong>: Online TSL Renewal<ul>
+<li><strong>Description</strong>: The Service has to be able to renew TSL information
+  from Online Sources</li>
+<li><strong>Must / Should</strong>: Should</li>
+<li><strong>FR-ID</strong>: DSS-FR-ONLINE_TSL</li>
+</ul>
+</li>
+<li><strong>Name</strong>: Cached TSL<ul>
+<li><strong>Description</strong>: The Service has to be able to use Cached TSL data
+  when checking for Certificate Validities.</li>
+<li><strong>Must / Should</strong>: Should</li>
+<li><strong>FR-ID</strong>: DSS-FR-CACHED_TSL</li>
+</ul>
+</li>
+<li><strong>Name</strong>: Automatic TSL list’s validity check<ul>
+<li><strong>Description</strong>: The Service must check the Validity of TSL at preconfigured
+  intervals. Initial TSL checking interval: 24 hours.</li>
+<li><strong>Must / Should</strong>: Must</li>
+<li><strong>FR-ID</strong>: DSS-FR-TSL_AUTOCHECK</li>
+</ul>
+</li>
+<li><strong>Name</strong>: TSL Certificate Checking<ul>
+<li><strong>Description</strong>: TSL's certificate's must be validated - one of 3 predefined
+  certificates must be used for signing TSL.</li>
+<li><strong>Must / Should</strong>: Must</li>
+<li><strong>FR-ID</strong>: DSS-FR-TSL_CERT_VALIDATE</li>
+</ul>
+</li>
+<li><strong>Name</strong>: Verification Process Cancelling<ul>
+<li><strong>Description</strong>: Verification process can be cancelled only in
+  case of fatal errors (it is not possible to parse the file)</li>
+<li><strong>Must / Should</strong>: Should</li>
+<li><strong>FR-ID</strong>: DSS-FR-CANCEL</li>
+</ul>
+</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../appendix-3/" class="btn btn-neutral float-right" title="Appendix 3 - Validation Policy"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../appendix-1/" class="btn btn-neutral" title="Appendix 1 - Non-Functional Requirements"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../appendix-1/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../appendix-3/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>

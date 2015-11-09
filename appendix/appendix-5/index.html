@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Appendix 5 - Sample Validation Policy Configuration - PDF Validator Documentation</title>
+  
+
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  <link href="../../override.css" rel="stylesheet">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Appendix 5 - Sample Validation Policy Configuration";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> PDF Validator Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">PDF Validation Service Overview</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../architecture/">Architecture of the Core Service</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../policy/">Validation Policy</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../interface_description/">Interface description</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../deployment/">Deploying PDF Validator Web Service</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../tsl_downloader/">TSL file loading without internet</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../lotl_keystore/">Generating keystore for LOTL validation (optional)</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../logging/">Logging</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../monitoring/">Monitoring Service</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../testing/">Automation testing</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../issues/">Known Issues</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../documentation/">Documentation updating</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Appendixes</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../appendix-1/">Appendix 1 - Non-Functional Requirements</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../appendix-2/">Appendix 2 - Functional Requirements</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../appendix-3/">Appendix 3 - Validation Policy</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../appendix-4/">Appendix 4 - Validation Constraint Configuration</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Appendix 5 - Sample Validation Policy Configuration</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#appendix-5-sample-validation-policy-configuration">Appendix 5 - Sample Validation Policy Configuration</a></li>
+                
+                    <li><a class="toctree-l4" href="#the-validation-policy-configuration-is-stored-in-constraintxml">The Validation Policy Configuration is stored in constraint.xml:</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../appendix-6/">Appendix 6 - ValidationService WSDL</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../appendix-7/">Appendix 7 - Sample PDF Validation Service Request</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../appendix-8/">Appendix 8 - Sample Response Data Blocks - positive response</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../appendix-9/">Appendix 9 - Sample Response Data Blocks – negative response</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../appendix-10/">Appendix 10 - Summary of modifications made to the DSS library</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">PDF Validator Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Appendixes &raquo;</li>
+        
+      
+    
+    <li>Appendix 5 - Sample Validation Policy Configuration</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="appendix-5-sample-validation-policy-configuration">Appendix 5 - Sample Validation Policy Configuration</h1>
+<h3 id="the-validation-policy-configuration-is-stored-in-constraintxml">The Validation Policy Configuration is stored in constraint.xml:</h3>
+<pre><code class="xml">&lt;ConstraintsParameters Name=&quot;QES AdESQC TL based&quot; xmlns=&quot;http://dss.esig.europa.eu/validation/diagnostic&quot;&gt;
+    &lt;Description&gt;
+        Validate electronic signatures and indicates whether they are Advanced electronic
+        Signatures (AdES), AdES supported by a
+        Qualified Certificate (AdES/QC) or a Qualified electronic
+        Signature (QES). All certificates and their related chains supporting the signatures are validated against the EU Member State
+        Trusted Lists (this includes signer's certificate and certificates used
+        to validate certificate validity status Services - CRLs, OCSP, and time-stamps).
+    &lt;/Description&gt;
+    &lt;MainSignature&gt;
+        &lt;AcceptablePolicies Level=&quot;FAIL&quot;&gt;
+            &lt;Id&gt;ANY_POLICY&lt;/Id&gt;
+            &lt;Id&gt;NO_POLICY&lt;/Id&gt;
+        &lt;/AcceptablePolicies&gt;
+        &lt;!--
+        &lt;AcceptableSignatureFormats Level=&quot;FAIL&quot;&gt;
+            &lt;Id&gt;PAdES_BASELINE_LT&lt;/Id&gt;
+            &lt;Id&gt;PAdES_BASELINE_LTA&lt;/Id&gt;
+        &lt;/AcceptableSignatureFormats&gt;
+        --&gt;
+        &lt;OcspDelayToBestSignatureTime Unit=&quot;MINUTES&quot;&gt;
+            &lt;Warn&gt;
+                &lt;MinimalDelay&gt;15&lt;/MinimalDelay&gt;
+            &lt;/Warn&gt;
+            &lt;Fail&gt;
+                &lt;MinimalDelay&gt;1440&lt;/MinimalDelay&gt;
+            &lt;/Fail&gt;
+        &lt;/OcspDelayToBestSignatureTime&gt;
+        &lt;ReferenceDataExistence Level=&quot;FAIL&quot;&gt;true&lt;/ReferenceDataExistence&gt;
+        &lt;ReferenceDataIntact Level=&quot;FAIL&quot;&gt;true&lt;/ReferenceDataIntact&gt;
+        &lt;SignatureIntact Level=&quot;FAIL&quot;&gt;true&lt;/SignatureIntact&gt;
+        &lt;SigningCertificate&gt;
+            &lt;Recognition Level=&quot;FAIL&quot;/&gt;
+            &lt;AttributePresent Level=&quot;FAIL&quot;/&gt;
+            &lt;DigestValuePresent Level=&quot;FAIL&quot;/&gt;
+            &lt;DigestValueMatch Level=&quot;FAIL&quot;&gt;true&lt;/DigestValueMatch&gt;
+            &lt;IssuerSerialMatch Level=&quot;WARN&quot;&gt;true&lt;/IssuerSerialMatch&gt;
+            &lt;Signed Level=&quot;FAIL&quot; /&gt;
+            &lt;Signature Level=&quot;FAIL&quot;/&gt;
+            &lt;Expiration Level=&quot;IGNORE&quot;/&gt;
+            &lt;RevocationDataAvailable Level=&quot;FAIL&quot;/&gt;
+            &lt;RevocationDataIsTrusted Level=&quot;FAIL&quot;/&gt;
+            &lt;RevocationDataFreshness Level=&quot;WARN&quot;/&gt;
+            &lt;ProspectiveCertificateChain Level=&quot;FAIL&quot;/&gt;
+            &lt;KeyUsage Level=&quot;FAIL&quot;&gt;
+                &lt;Identifier&gt;nonRepudiation&lt;/Identifier&gt;
+            &lt;/KeyUsage&gt;
+            &lt;Revoked Level=&quot;FAIL&quot;/&gt;
+            &lt;OnHold Level=&quot;FAIL&quot;/&gt;
+            &lt;TSLValidity Level=&quot;WARN&quot;/&gt;
+            &lt;TSLStatus Level=&quot;WARN&quot;/&gt;
+            &lt;TSLStatusAndValidity Level=&quot;FAIL&quot;/&gt;
+            &lt;Qualification Level=&quot;WARN&quot;/&gt;
+            &lt;SupportedBySSCD Level=&quot;WARN&quot;/&gt;
+            &lt;IssuedToLegalPerson Level=&quot;INFORM&quot;/&gt;
+            &lt;Cryptographic Level=&quot;FAIL&quot;&gt;
+                &lt;AcceptableEncryptionAlgo&gt;
+                    &lt;Algo&gt;RSA&lt;/Algo&gt;
+                    &lt;Algo&gt;ECDSA&lt;/Algo&gt;
+                &lt;/AcceptableEncryptionAlgo&gt;
+                &lt;MiniPublicKeySize&gt;
+                    &lt;Algo Size=&quot;1024&quot;&gt;RSA&lt;/Algo&gt;
+                    &lt;Algo Size=&quot;224&quot;&gt;ECDSA&lt;/Algo&gt;
+                &lt;/MiniPublicKeySize&gt;
+                &lt;AcceptableDigestAlgo&gt;
+                    &lt;Algo&gt;SHA1&lt;/Algo&gt;
+                    &lt;Algo&gt;SHA224&lt;/Algo&gt;
+                    &lt;Algo&gt;SHA256&lt;/Algo&gt;
+                    &lt;Algo&gt;SHA384&lt;/Algo&gt;
+                    &lt;Algo&gt;SHA512&lt;/Algo&gt;
+                &lt;/AcceptableDigestAlgo&gt;
+            &lt;/Cryptographic&gt;
+        &lt;/SigningCertificate&gt;
+        &lt;CACertificate&gt;
+            &lt;Signature Level=&quot;FAIL&quot;/&gt;
+            &lt;Expiration Level=&quot;FAIL&quot;/&gt;
+            &lt;RevocationDataAvailable Level=&quot;FAIL&quot;/&gt;
+            &lt;RevocationDataIsTrusted Level=&quot;FAIL&quot;/&gt;
+            &lt;RevocationDataFreshness Level=&quot;WARN&quot;/&gt;
+            &lt;Revoked Level=&quot;FAIL&quot;/&gt;
+            &lt;Cryptographic Level=&quot;FAIL&quot;&gt;
+                &lt;AcceptableEncryptionAlgo&gt;
+                    &lt;Algo&gt;RSA&lt;/Algo&gt;
+                    &lt;Algo&gt;ECDSA&lt;/Algo&gt;
+                &lt;/AcceptableEncryptionAlgo&gt;
+                &lt;MiniPublicKeySize&gt;
+                    &lt;Algo Size=&quot;1024&quot;&gt;RSA&lt;/Algo&gt;
+                    &lt;Algo Size=&quot;224&quot;&gt;ECDSA&lt;/Algo&gt;
+                &lt;/MiniPublicKeySize&gt;
+                &lt;AcceptableDigestAlgo&gt;
+                    &lt;Algo&gt;SHA1&lt;/Algo&gt;
+                    &lt;Algo&gt;SHA224&lt;/Algo&gt;
+                    &lt;Algo&gt;SHA256&lt;/Algo&gt;
+                    &lt;Algo&gt;SHA384&lt;/Algo&gt;
+                    &lt;Algo&gt;SHA512&lt;/Algo&gt;
+                &lt;/AcceptableDigestAlgo&gt;
+            &lt;/Cryptographic&gt;
+        &lt;/CACertificate&gt;
+        &lt;Cryptographic Level=&quot;FAIL&quot;&gt;
+            &lt;AcceptableEncryptionAlgo&gt;
+                &lt;Algo&gt;RSA&lt;/Algo&gt;
+                &lt;Algo&gt;ECDSA&lt;/Algo&gt;
+            &lt;/AcceptableEncryptionAlgo&gt;
+            &lt;MiniPublicKeySize&gt;
+                &lt;Algo Size=&quot;1024&quot;&gt;RSA&lt;/Algo&gt;
+                &lt;Algo Size=&quot;224&quot;&gt;ECDSA&lt;/Algo&gt;
+            &lt;/MiniPublicKeySize&gt;
+            &lt;AcceptableDigestAlgo&gt;
+                &lt;Algo&gt;SHA1&lt;/Algo&gt;
+                &lt;Algo&gt;SHA224&lt;/Algo&gt;
+                &lt;Algo&gt;SHA256&lt;/Algo&gt;
+                &lt;Algo&gt;SHA384&lt;/Algo&gt;
+                &lt;Algo&gt;SHA512&lt;/Algo&gt;
+            &lt;/AcceptableDigestAlgo&gt;
+        &lt;/Cryptographic&gt;
+        &lt;MandatedSignedQProperties&gt;
+            &lt;SigningTime Level=&quot;FAIL&quot;/&gt;
+            &lt;ContentTimeStamp&gt;
+                &lt;MessageImprintDataFound Level=&quot;FAIL&quot; /&gt;
+                &lt;MessageImprintDataIntact Level=&quot;FAIL&quot; /&gt;
+            &lt;/ContentTimeStamp&gt;
+            &lt;!--&lt;ContentType Level=&quot;FAIL&quot;&gt;1.2.840.113549.1.7.1&lt;/ContentType&gt;--&gt;
+        &lt;/MandatedSignedQProperties&gt;
+        &lt;MandatedUnsignedQProperties&gt;
+            &lt;CounterSignature&gt;
+                &lt;ReferenceDataExistence Level=&quot;FAIL&quot; /&gt;
+                &lt;ReferenceDataIntact Level=&quot;FAIL&quot; /&gt;
+                &lt;SignatureIntact Level=&quot;FAIL&quot; /&gt;
+            &lt;/CounterSignature&gt;
+        &lt;/MandatedUnsignedQProperties&gt;
+    &lt;/MainSignature&gt;
+    &lt;Timestamp&gt;
+        &lt;TimestampDelay Unit=&quot;DAYS&quot;&gt;0&lt;/TimestampDelay&gt;
+        &lt;MessageImprintDataFound Level=&quot;FAIL&quot;/&gt;
+        &lt;MessageImprintDataIntact Level=&quot;FAIL&quot;/&gt;
+        &lt;RevocationTimeAgainstBestSignatureTime Level=&quot;FAIL&quot;/&gt;
+        &lt;BestSignatureTimeBeforeIssuanceDateOfSigningCertificate Level=&quot;FAIL&quot;/&gt;
+        &lt;SigningCertificateValidityAtBestSignatureTime Level=&quot;FAIL&quot;/&gt;
+        &lt;AlgorithmReliableAtBestSignatureTime Level=&quot;FAIL&quot;/&gt;
+        &lt;Coherence Level=&quot;WARN&quot;/&gt;
+        &lt;SigningCertificate&gt;
+            &lt;Recognition Level=&quot;FAIL&quot;/&gt;
+            &lt;Signature Level=&quot;FAIL&quot;/&gt;
+            &lt;Expiration Level=&quot;FAIL&quot;/&gt;
+            &lt;RevocationDataAvailable Level=&quot;FAIL&quot;/&gt;
+            &lt;RevocationDataIsTrusted Level=&quot;FAIL&quot;/&gt;
+            &lt;RevocationDataFreshness Level=&quot;WARN&quot;/&gt;
+            &lt;ProspectiveCertificateChain Level=&quot;FAIL&quot;/&gt;
+            &lt;Revoked Level=&quot;FAIL&quot;/&gt;
+            &lt;OnHold Level=&quot;FAIL&quot;/&gt;
+            &lt;TSLStatus Level=&quot;FAIL&quot;/&gt;
+            &lt;Cryptographic Level=&quot;FAIL&quot;&gt;
+                &lt;AcceptableEncryptionAlgo&gt;
+                    &lt;Algo&gt;RSA&lt;/Algo&gt;
+                    &lt;Algo&gt;ECDSA&lt;/Algo&gt;
+                &lt;/AcceptableEncryptionAlgo&gt;
+                &lt;MiniPublicKeySize&gt;
+                    &lt;Algo Size=&quot;1024&quot;&gt;RSA&lt;/Algo&gt;
+                    &lt;Algo Size=&quot;224&quot;&gt;ECDSA&lt;/Algo&gt;
+                &lt;/MiniPublicKeySize&gt;
+                &lt;AcceptableDigestAlgo&gt;
+                    &lt;Algo&gt;SHA1&lt;/Algo&gt;
+                    &lt;Algo&gt;SHA224&lt;/Algo&gt;
+                    &lt;Algo&gt;SHA256&lt;/Algo&gt;
+                    &lt;Algo&gt;SHA384&lt;/Algo&gt;
+                    &lt;Algo&gt;SHA512&lt;/Algo&gt;
+                &lt;/AcceptableDigestAlgo&gt;
+            &lt;/Cryptographic&gt;
+        &lt;/SigningCertificate&gt;
+        &lt;CACertificate&gt;
+            &lt;Signature Level=&quot;FAIL&quot;/&gt;
+            &lt;Expiration Level=&quot;FAIL&quot;/&gt;
+            &lt;RevocationDataAvailable Level=&quot;FAIL&quot;/&gt;
+            &lt;RevocationDataIsTrusted Level=&quot;FAIL&quot;/&gt;
+            &lt;RevocationDataFreshness Level=&quot;WARN&quot;/&gt;
+            &lt;Revoked Level=&quot;FAIL&quot;/&gt;
+            &lt;Cryptographic Level=&quot;FAIL&quot;&gt;
+                &lt;AcceptableEncryptionAlgo&gt;
+                    &lt;Algo&gt;RSA&lt;/Algo&gt;
+                    &lt;Algo&gt;ECDSA&lt;/Algo&gt;
+                &lt;/AcceptableEncryptionAlgo&gt;
+                &lt;MiniPublicKeySize&gt;
+                    &lt;Algo Size=&quot;1024&quot;&gt;RSA&lt;/Algo&gt;
+                    &lt;Algo Size=&quot;224&quot;&gt;ECDSA&lt;/Algo&gt;
+                &lt;/MiniPublicKeySize&gt;
+                &lt;AcceptableDigestAlgo&gt;
+                    &lt;Algo&gt;SHA1&lt;/Algo&gt;
+                    &lt;Algo&gt;SHA224&lt;/Algo&gt;
+                    &lt;Algo&gt;SHA256&lt;/Algo&gt;
+                    &lt;Algo&gt;SHA384&lt;/Algo&gt;
+                    &lt;Algo&gt;SHA512&lt;/Algo&gt;
+                &lt;/AcceptableDigestAlgo&gt;
+            &lt;/Cryptographic&gt;
+        &lt;/CACertificate&gt;
+    &lt;/Timestamp&gt;
+    &lt;Revocation&gt;
+        &lt;RevocationFreshness Unit=&quot;DAYS&quot;&gt;0&lt;/RevocationFreshness&gt;
+        &lt;SigningCertificate&gt;
+            &lt;Signature Level=&quot;FAIL&quot;/&gt;
+            &lt;Expiration Level=&quot;FAIL&quot;/&gt;
+            &lt;RevocationDataAvailable Level=&quot;FAIL&quot;/&gt;
+            &lt;RevocationDataIsTrusted Level=&quot;FAIL&quot;/&gt;
+            &lt;RevocationDataFreshness Level=&quot;WARN&quot;/&gt;
+            &lt;Revoked Level=&quot;FAIL&quot;/&gt;
+            &lt;Cryptographic Level=&quot;WARN&quot;&gt;
+                &lt;AcceptableEncryptionAlgo&gt;
+                    &lt;Algo&gt;RSA&lt;/Algo&gt;
+                    &lt;Algo&gt;ECDSA&lt;/Algo&gt;
+                &lt;/AcceptableEncryptionAlgo&gt;
+                &lt;MiniPublicKeySize&gt;
+                    &lt;Algo Size=&quot;1024&quot;&gt;RSA&lt;/Algo&gt;
+                    &lt;Algo Size=&quot;224&quot;&gt;ECDSA&lt;/Algo&gt;
+                &lt;/MiniPublicKeySize&gt;
+                &lt;AcceptableDigestAlgo&gt;
+                    &lt;Algo&gt;SHA1&lt;/Algo&gt;
+                    &lt;Algo&gt;SHA224&lt;/Algo&gt;
+                    &lt;Algo&gt;SHA256&lt;/Algo&gt;
+                    &lt;Algo&gt;SHA384&lt;/Algo&gt;
+                    &lt;Algo&gt;SHA512&lt;/Algo&gt;
+                &lt;/AcceptableDigestAlgo&gt;
+            &lt;/Cryptographic&gt;
+        &lt;/SigningCertificate&gt;
+        &lt;CACertificate&gt;
+            &lt;Signature Level=&quot;FAIL&quot;/&gt;
+            &lt;Expiration Level=&quot;FAIL&quot;/&gt;
+            &lt;RevocationDataAvailable Level=&quot;FAIL&quot;/&gt;
+            &lt;RevocationDataIsTrusted Level=&quot;FAIL&quot;/&gt;
+            &lt;RevocationDataFreshness Level=&quot;WARN&quot;/&gt;
+            &lt;Revoked Level=&quot;FAIL&quot;/&gt;
+            &lt;Cryptographic Level=&quot;FAIL&quot;&gt;
+                &lt;AcceptableEncryptionAlgo&gt;
+                    &lt;Algo&gt;RSA&lt;/Algo&gt;
+                    &lt;Algo&gt;ECDSA&lt;/Algo&gt;
+                &lt;/AcceptableEncryptionAlgo&gt;
+                &lt;MiniPublicKeySize&gt;
+                    &lt;Algo Size=&quot;1024&quot;&gt;RSA&lt;/Algo&gt;
+                    &lt;Algo Size=&quot;224&quot;&gt;ECDSA&lt;/Algo&gt;
+                &lt;/MiniPublicKeySize&gt;
+                &lt;AcceptableDigestAlgo&gt;
+                    &lt;Algo&gt;SHA1&lt;/Algo&gt;
+                    &lt;Algo&gt;SHA224&lt;/Algo&gt;
+                    &lt;Algo&gt;SHA256&lt;/Algo&gt;
+                    &lt;Algo&gt;SHA384&lt;/Algo&gt;
+                    &lt;Algo&gt;SHA512&lt;/Algo&gt;
+                &lt;/AcceptableDigestAlgo&gt;
+            &lt;/Cryptographic&gt;
+        &lt;/CACertificate&gt;
+    &lt;/Revocation&gt;
+    &lt;Cryptographic&gt;
+        &lt;AlgoExpirationDate Format=&quot;yyyy-MM-dd&quot;&gt;
+            &lt;!-- Algorithms under 112 bit strength: --&gt;
+            &lt;Algo Date=&quot;2017-02-24&quot;&gt;SHA1&lt;/Algo&gt;
+            &lt;Algo Date=&quot;2017-02-24&quot;&gt;RSA1024&lt;/Algo&gt;
+            &lt;Algo Date=&quot;2017-02-24&quot;&gt;RSA1536&lt;/Algo&gt;
+
+            &lt;!-- Algorithms with ~ 112 bit strength: --&gt;
+            &lt;Algo Date=&quot;2025-02-24&quot;&gt;SHA224&lt;/Algo&gt;
+            &lt;Algo Date=&quot;2025-02-24&quot;&gt;RSA2048&lt;/Algo&gt;
+            &lt;Algo Date=&quot;2025-02-24&quot;&gt;ECDSA224&lt;/Algo&gt;
+
+            &lt;!-- Algorithms with ~ 128 bit strength: --&gt;
+            &lt;Algo Date=&quot;2030-02-24&quot;&gt;SHA256&lt;/Algo&gt;
+            &lt;Algo Date=&quot;2030-02-24&quot;&gt;RSA3072&lt;/Algo&gt;
+            &lt;Algo Date=&quot;2030-02-24&quot;&gt;RSA4096&lt;/Algo&gt;
+            &lt;Algo Date=&quot;2030-02-24&quot;&gt;ECDSA256&lt;/Algo&gt;
+
+            &lt;!-- Algorithms with ~ 192 bit strength: --&gt;
+            &lt;Algo Date=&quot;2035-02-24&quot;&gt;SHA384&lt;/Algo&gt;
+
+            &lt;!-- Algorithms with ~ 256 bit strength: --&gt;
+            &lt;Algo Date=&quot;2035-02-24&quot;&gt;SHA512&lt;/Algo&gt;
+        &lt;/AlgoExpirationDate&gt;
+    &lt;/Cryptographic&gt;
+&lt;/ConstraintsParameters&gt;
+
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../appendix-6/" class="btn btn-neutral float-right" title="Appendix 6 - ValidationService WSDL"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../appendix-4/" class="btn btn-neutral" title="Appendix 4 - Validation Constraint Configuration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../appendix-4/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../appendix-6/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>

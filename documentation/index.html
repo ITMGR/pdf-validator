@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Validation Policy - PDF Validator Documentation</title>
+  <title>Documentation updating - PDF Validator Documentation</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -21,7 +21,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Validation Policy";
+    var mkdocs_page_name = "Documentation updating";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -65,15 +65,8 @@
 <li>
           
             <li>
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Validation Policy</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#validation-policy">Validation Policy</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../policy/">Validation Policy</a>
         
     </li>
 <li>
@@ -135,8 +128,23 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../documentation/">Documentation updating</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Documentation updating</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#updating-pdf-validator-documentation">Updating PDF Validator documentation</a></li>
+                
+                    <li><a class="toctree-l4" href="#system-requirements">System requirements</a></li>
+                
+                    <li><a class="toctree-l4" href="#installing-mkdocs">Installing MkDocs</a></li>
+                
+                    <li><a class="toctree-l4" href="#editing-content">Editing content</a></li>
+                
+                    <li><a class="toctree-l4" href="#deploying-changes-to-github-pages">Deploying changes to GitHub pages</a></li>
+                
+            
+            </ul>
         
     </li>
 <li>
@@ -241,7 +249,7 @@
     
       
     
-    <li>Validation Policy</li>
+    <li>Documentation updating</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -251,41 +259,59 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="validation-policy">Validation Policy</h1>
-<p>The validation of a Digital Signature in PDF is driven by a set of rules
-called a Validation Policy - a set of constraints that are applied to
-cryptographic data during the execution of the Signature Validation
-Process. For the most part, validation proceeds according to EU
-standards and norms using the underlying DSS library. However, the
-Service adds some additional constraints to comply with Estonian law and
-procedures. The main differences from the rest of the Europe are
-following:</p>
+                <h1 id="updating-pdf-validator-documentation">Updating PDF Validator documentation</h1>
+<p>Our documentation is written using <a href="http://www.mkdocs.org/">MkDocs</a> static documentation site generator and 
+language that we use to write documentation is <a href="https://daringfireball.net/projects/markdown/">Markdown</a>. </p>
+<h2 id="system-requirements">System requirements</h2>
 <ul>
-<li>The service requires a reasonable guarantee that the signing
-  certificates were not temporarily stopped during the time
-  of signing. Two different checks facilitate ensuring this
-  requirement:<ul>
-<li>Signature level must be at “LT” or “LTA”. The signature must
-  already contain an OCSP response and a signature timestamp (the
-  service will not attempt to request new OCSP or timestamp tokens
-  during validation).</li>
-<li>The provided OCSP response must be after the signature
-  timestamp, but not more than 24 hours later. A warning is given
-  if the time difference is more than 15 minutes but less than 24 hours.</li>
+<li><strong>Python 2</strong> - All version above 2.6 should work</li>
+<li><strong>pip</strong> - Python package manager</li>
+<li><strong>MkDocs CLI</strong> - to generate and deploy new version of documentation</li>
+<li><strong>Text Editor</strong> - to edit Markdown documents (i.e <a href="http://pad.haroopress.com/#">Haroopad</a>)</li>
 </ul>
+<h2 id="installing-mkdocs">Installing MkDocs</h2>
+<h3 id="ubuntu-and-mac-os-x">Ubuntu and Mac OS X</h3>
+<p>Both Ubuntu and Mac OS X come <code>python</code> version 2 already installed You only need to install <code>pip</code></p>
+<ol>
+<li>Install <code>pip</code> on Ubuntu 15.04 <code>sudo apt-get install python-pip</code> on Mac OS X <code>sudo easy_install pip</code></li>
+<li>Next up install <code>mkdocs</code> using <a href="https://pip.pypa.io/en/stable/">pip</a>: <code>pip install mkdocs</code></li>
+</ol>
+<h3 id="windows">Windows</h3>
+<p>Installing Python:</p>
+<ol>
+<li>Download the installer from the official <code>python</code> homepage: https://www.python.org/downloads/<blockquote>
+<p><strong>NOTE:</strong> Starting with version 2.7.9 and onwards <code>pip</code> ships along with python,<br/>
+so there shouldn't be any need to install <code>pip</code> separately.</p>
+</blockquote>
 </li>
-<li>Certificate Revocation Lists (CRL) are not supported; OCSP protocol is mandated.</li>
-<li>The cryptographic algorithms DSA and RIPEMD are not supported;
-  allowed key lengths of other algorithms have been changed in
-  accordance with Estonian requirements.</li>
-<li>Signing certificates must explicitly state that they were meant to
-  be used for digital signatures via the use of the non-repudiation flag.</li>
-</ul>
-<p>Validation Policy is described in more detail in „Appendix 3 -
-Validation Policy“. Validation Policy configuration is shown in
-„Appendix 4 - Validation Constraint Configuration“. Validation Process’s
-result example is shown Detailed Report section in „Appendix 8 - Sample
-Response Data Blocks - positive response“.</p>
+<li>Execute the python installer</li>
+</ol>
+<p>Installing Pip:</p>
+<ol>
+<li>Download <a href="https://bootstrap.pypa.io/get-pip.py">get-pip.py</a></li>
+<li>Then run the following command (which may require administrator access): <code>python get-pip.py</code></li>
+<li>Add C:\Python27\Scripts to the system path (PATH environment variable)</li>
+</ol>
+<p>Installing Mkdocs:</p>
+<p>Install <code>mkdocs</code> using <a href="https://pip.pypa.io/en/stable/">pip</a>: <code>pip install mkdocs</code></p>
+<p>Now You're done and can start editing the PDF Validator documentation. </p>
+<h2 id="editing-content">Editing content</h2>
+<ol>
+<li>Edit markdown files inside the <code>docs</code> directory</li>
+<li>Preview Your changes by issuing <code>mkdocs serve</code> and navigating to <a href="http://localhost:8000">http://localhost:8000</a></li>
+<li>Commit and push Your changes to <code>git</code></li>
+</ol>
+<blockquote>
+<p><strong>NOTE</strong> If You want to add image files please place them inside <code>$PROJECT_ROOT/docs/img</code> directory</p>
+<p><strong>NOTE</strong> If You need to override some of the CSS properties place these changes 
+inside the <code>$PROJECT_ROOT/docs/override.css</code> file</p>
+</blockquote>
+<h2 id="deploying-changes-to-github-pages">Deploying changes to GitHub pages</h2>
+<ol>
+<li>Generate the static site <code>mkdocs build</code></li>
+<li>Deploy the generated site to GitHub Pages: <code>mkdocs gh-deploy</code> </li>
+<li>You are done and can go check the updated documentation at: <a href="http://open-eid.github.io/pdf-validator">http://open-eid.github.io/pdf-validator</a></li>
+</ol>
               
             </div>
           </div>
@@ -293,10 +319,10 @@ Response Data Blocks - positive response“.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../interface_description/" class="btn btn-neutral float-right" title="Interface description"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../appendix/appendix-1/" class="btn btn-neutral float-right" title="Appendix 1 - Non-Functional Requirements"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../architecture/" class="btn btn-neutral" title="Architecture of the Core Service"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../issues/" class="btn btn-neutral" title="Known Issues"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -322,10 +348,10 @@ Response Data Blocks - positive response“.</p>
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../architecture/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../issues/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../interface_description/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../appendix/appendix-1/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
