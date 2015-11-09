@@ -468,9 +468,8 @@ is need to validate larger files then web service needs to be recompiled. </p>
 </ol>
 <p>To test file size limit You can submit large files with the following
 command (which submits "demo.xml", presumably a large file):</p>
-<pre><code class="bash">curl -s -X POST -d &quot;@demo.xml&quot;
-http://localhost:8080/pdf-validator-webapp/wservice/validationService\\?wsdl
-| xmllint --format - | pygmentize -l xml
+<pre><code class="bash">curl -s -X POST -d &quot;@demo.xml&quot; \
+http://localhost:8080/pdf-validator-webapp/wservice/validationService\\?wsdl | xmllint --format - | pygmentize -l xml
 </code></pre>
 
 <blockquote>
@@ -494,6 +493,24 @@ separately</p>
 check if web service has started correctly and see similar web page as shown below.</p>
 <p><img alt="WSDL Endpoints after service has started" src="../img/working_web_service.png" /></p>
 <p>For a more thorough validation of the installation, the next step can be configuring and running the <a href="../monitoring">built-in Monitoring Service</a>.</p>
+<h3 id="using-command-line">Using command line</h3>
+<p>When You want to verify that signature validation by sending request to PDF validator web service then You need to follow these steps.</p>
+<p>First download sample request file:</p>
+<pre><code>wget https://raw.githubusercontent.com/open-eid/pdf-validator/develop/test-files/check_status_request.xml
+</code></pre>
+
+<p>Now issue <code>curl</code> command to verify that PDF validator service can validate document correctly:</p>
+<pre><code class="bash">curl -s -X POST -d &quot;@check_status_request.xml&quot; http://localhost:8080/pdf-validator-webapp/wservice/validationService |
+xmllint --format - |
+pygmentize -l xml |
+grep &quot;ValidSignaturesCount&quot; | sed 's/&amp;lt;/ /g' | sed 's/&amp;gt;/ /g'
+
+</code></pre>
+
+<p>Above command should produce following result. It means there where 1 valid signature inside PDF file:</p>
+<pre><code>    ValidSignaturesCount 1 /ValidSignaturesCount
+
+</code></pre>
               
             </div>
           </div>
