@@ -294,10 +294,10 @@ mvn clean install -Dmaven.test.skip.exec -DargLine=&quot;-Xmx512m&quot;
 
 <p>Next step is to deploy the build artifacts to Tomcat.</p>
 <h3 id="build-process-on-ubuntu-1504">Build process on Ubuntu 15.04</h3>
-<p>First we need to install all required software dependencies for that we need 
+<p>First we need to install all required software dependencies for that we need
 to issue following commands:</p>
 <pre><code class="bash">sudo apt-get update
-sudo apt-get install -y git 
+sudo apt-get install -y git
 sudo apt-get install -y openjdk-7-jdk
 sudo apt-get install -y maven
 sudo apt-get install -y tomcat7
@@ -329,7 +329,7 @@ first time.</p>
 </blockquote>
 <h2 id="option-1-installing-and-configuring-tomcat-using-apt-get-under-ubuntu-1504">Option 1: Installing and configuring Tomcat using <em>apt-get</em> under Ubuntu 15.04</h2>
 <p>After build has completed successfully we can continue installing the build artifacts
-into our Tomcat web container. </p>
+into our Tomcat web container.</p>
 <p>First make sure You have installed the Tomcat.</p>
 <pre><code class="bash">sudo apt-get update &amp;&amp; sudo apt-get install -y tomcat7
 </code></pre>
@@ -343,13 +343,20 @@ sudo chmod 755 cert-store
 
 <p>Now we need to configure some environment variables to make PDF Validator work correctly.
 Create a <code>bin</code> directory in <code>$CATALINA_HOME</code> and add <code>setenv.sh</code> file into it.</p>
+<p>First we need to set <code>CATALINA_HOME</code> and <code>CATALINA_BASE</code> by below lines into <code>/etc/default/tomcat7</code></p>
+<pre><code class="bash">CATALINA_HOME=/usr/share/tomcat7
+
+# Directory for per-instance configuration files and webapps
+CATALINA_BASE=/var/lib/tomcat7
+</code></pre>
+
 <blockquote>
-<p><strong>NOTE:</strong> Paths below are based on default paths of package manger 
+<p><strong>NOTE:</strong> Paths below are based on default paths of package manger
 installed version of <strong>Tomcat 7 of Ubuntu 15.04</strong></p>
 </blockquote>
 <pre><code class="bash">cd /var/lib/tomcat7
-sudo mkdir bin 
-sudo touch bin/setenv.sh 
+sudo mkdir bin
+sudo touch bin/setenv.sh
 </code></pre>
 
 <p>Add following content into this file.</p>
@@ -361,7 +368,7 @@ sudo touch bin/setenv.sh
 </code></pre>
 
 <blockquote>
-<p><strong>NOTE</strong> It would be good to rename the <code>war</code> file to make more usable URL otherwise the version number will be visible in 
+<p><strong>NOTE</strong> It would be good to rename the <code>war</code> file to make more usable URL otherwise the version number will be visible in
 URL path</p>
 </blockquote>
 <p>Now we can start the Tomcat service:</p>
@@ -439,7 +446,7 @@ list of WSDL endpoints.</p>
 </li>
 </ol>
 <h2 id="configuring-java-certificate-keystore-location">Configuring Java certificate keystore location</h2>
-<p>When PDF Validator web application starts it creates <code>etc</code> directory relative to path of Tomcat startup script execution 
+<p>When PDF Validator web application starts it creates <code>etc</code> directory relative to path of Tomcat startup script execution
 location. In most of Linux distribution the default solution won't work because of lack of write permissions in startup forlder.</p>
 <p>To fix this You need to set environment variable <code>DSS_DATA_FOLDER</code> and make it accessible to Tomcat Web container user.</p>
 <!---
@@ -449,7 +456,7 @@ Using Nginx reverse proxy in front of PDF Validator web service
 
 <h2 id="validation-request-maximum-size-limit">Validation request maximum size limit</h2>
 <p>PDF Validator by default can validate files around <strong>10MB</strong> in size. If there
-is need to validate larger files then web service needs to be recompiled. </p>
+is need to validate larger files then web service needs to be recompiled.</p>
 <p>Steps to change upload limit:</p>
 <ol>
 <li>Open file <code>PROJECT_BASE_DIRECTORY/pdf-validator-parent/pdf-validator-webservice/src/main/resources/pdf-validator-webservice.xml</code></li>
@@ -457,7 +464,7 @@ is need to validate larger files then web service needs to be recompiled. </p>
 <p>Change this below shown section. File size limit is given in bytes.\</p>
 <pre><code>    &lt;cxf:bus&gt;
         &lt;cxf:properties&gt;
-            &lt;entry key="org.apache.cxf.stax.maxTextLength" value="10000000" /&gt; 
+            &lt;entry key="org.apache.cxf.stax.maxTextLength" value="10000000" /&gt;
         &lt;/cxf:properties&gt;
     &lt;/cxf:bus&gt;
 </code></pre>
@@ -489,6 +496,17 @@ separately</p>
 </code></pre>
 
 <h2 id="verifying-installation">Verifying installation</h2>
+<h3 id="validate-that-pdf-validator-has-started-correctly-from-logs">Validate that PDF Validator has started correctly from logs</h3>
+<p>Easiest way is to look for below shown lines in <code>catalina.out</code> log files:</p>
+<pre><code class="bash">...
+11:47:37.592 [Thread-4] INFO  TrustedListsCertificateSource.java:398 - Loading completed: 31 trusted lists
+11:47:37.592 [Thread-4] INFO  TrustedListsCertificateSource.java:399 -                  : 1351 certificates
+11:47:37.592 [Thread-4] INFO  ReloadableTrustedListCertificateSource.java:80 - --&gt; run(): END LOADING
+11:47:37.627 [org.springframework.scheduling.quartz.SchedulerFactoryBean#0_Worker-1] INFO  ReloadableTrustedListCertificateSource.java:156 - TSL Update error occurred: TSL Update completed successfully
+...
+</code></pre>
+
+<h3 id="using-browser-to-check-that-service-works">Using browser to check that service works</h3>
 <p>After checking logs for errors You can navigate to <code>http://&lt;server-ip&gt;:8080/pdf-validator-webapp-1.0.1.RC1/wservice</code> with browser to
 check if web service has started correctly and see similar web page as shown below.</p>
 <p><img alt="WSDL Endpoints after service has started" src="../img/working_web_service.png" /></p>
@@ -501,8 +519,6 @@ check if web service has started correctly and see similar web page as shown bel
 
 <p>Now issue <code>curl</code> command to verify that PDF validator service can validate document correctly:</p>
 <pre><code class="bash">curl -s -X POST -d &quot;@check_status_request.xml&quot; http://localhost:8080/pdf-validator-webapp/wservice/validationService |
-xmllint --format - |
-pygmentize -l xml |
 grep &quot;ValidSignaturesCount&quot; | sed 's/&amp;lt;/ /g' | sed 's/&amp;gt;/ /g'
 
 </code></pre>

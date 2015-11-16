@@ -115,6 +115,9 @@
                 <li class="toctree-l3"><a href="#starting-and-configuring-monitoring-service">Starting and configuring monitoring Service</a></li>
                 
             
+                <li class="toctree-l3"><a href="#command-line-arguments">Command line arguments</a></li>
+                
+            
                 <li class="toctree-l3"><a href="#monitoring-service-response-values">Monitoring Service response values</a></li>
                 
             
@@ -283,6 +286,25 @@ monitoring.path=/pdf-validator-webapp/wService/validationService
 <p>You can override these properties by placing application.properties file
 in same directory where the <code>pdf-validator-monitoring-1.0.1.RC1.jar</code> is
 located.</p>
+<h2 id="command-line-arguments">Command line arguments</h2>
+<p>If You do not like messing around with <code>application.properties</code> then You
+can pass in configuration as command line arguments.</p>
+<p>following command line options are available:</p>
+<pre><code class="bash">java -jar pdf-validator-monitoring-1.0.1.RC1.jar \
+    --server.port=4500 \
+    --monitoring.host=http://localhost:8080 \
+    --monitoring.path=/pdf-validator-webapp/wservice/validationService \
+    --monitoring.tslStatusPath=/pdf-validator-webapp/status/tsl \
+    --monitoring.requestInterval=3000
+</code></pre>
+
+<p>Explanation of command line arguments:
+<em> <code>--server.port</code> - set the port in which the monitoring service should be started
+</em> <code>--monitoring.host</code> - URL Path to PDF Validator service
+<em> <code>--monitoring.path</code> - path to PDF Validator validation service endpoint
+</em> <code>--monitoring.tslStatusPath</code> - path to info about TSL state in PDF Validator
+* <code>--monitoring.requestInterval</code> - how often should be checked for PDF Validator service state.
+  Interval is in milliseconds.</p>
 <h2 id="monitoring-service-response-values">Monitoring Service response values</h2>
 <p>To see the last monitoring request result You can navigate to URL with
 browser where the Service is running

@@ -309,7 +309,7 @@ the <code>@Test</code> annotation in the java code editor and select <strong>
 'testName'</strong></p>
 <h4 id="run-tests-from-the-command-line">Run tests from the command line:</h4>
 <ol>
-<li>Open command line tools (i.e cmd, iTerm) </li>
+<li>Open command line tools (i.e cmd, iTerm)</li>
 <li>Navigate to <code>PROJECT_ROOT/pdf-validator-parent/pdf-valdidator-test/</code></li>
 </ol>
 <p>To run all tests</p>
@@ -322,6 +322,33 @@ the <code>@Test</code> annotation in the java code editor and select <strong>
 
 <p>To run single method:</p>
 <pre><code class="bash">mvn -Dtest=\[class\]\#\[method\] test
+</code></pre>
+
+<h3 id="checking-logs-for-validation-result">Checking logs for validation result</h3>
+<p>Very little information is given out when validating signatures but short summery is given.</p>
+<p>Below is lines that will be outputted when validation worked as expected and all signatures are valid.</p>
+<pre><code class="bash">11:54:50.628 [http-bio-8080-exec-1] INFO  ValidationServiceImpl.java:75 - WsValidateDocument: begin
+11:54:50.636 [http-bio-8080-exec-1] INFO  PdfObjFactory.java:53 - Fallback to 'eu.europa.esig.dss.pdf.pdfbox.PdfBoxObjectFactory' as the PDF Object Factory Implementation
+11:54:50.929 [http-bio-8080-exec-1] INFO  SignedDocumentValidator.java:390 - Document validation...
+11:54:51.617 [http-bio-8080-exec-1] INFO  ValidationServiceImpl.java:110 - Validation completed. Total signature count: 1 and valid signature count: 1
+11:54:51.617 [http-bio-8080-exec-1] INFO  ValidationServiceImpl.java:116 - WsValidateDocument: end
+</code></pre>
+
+<p>When file is not validated as PDF then <code>DSSException</code> is thrown like shown below.</p>
+<pre><code class="bash">11:59:53.727 [http-bio-8080-exec-3] INFO  ValidationServiceImpl.java:75 - WsValidateDocument: begin
+11:59:53.729 [http-bio-8080-exec-3] ERROR ValidationServiceImpl.java:120 - Document format not recognized/handled
+eu.europa.esig.dss.DSSException: Document format not recognized/handled
+        at eu.europa.esig.dss.validation.SignedDocumentValidator.fromDocument(SignedDocumentValidator.java:236) ~[dss-document-4.5.0.jar:na]
+        at eu.europa.esig.dss.ws.impl.ValidationServiceImpl.validateDocument(ValidationServiceImpl.java:82) ~[dss-webservices-4.5.0.jar:na]
+...        
+</code></pre>
+
+<p>Not valid signature when You look at the log line <code>ValidationServiceImpl.java:110 - Validation completed.</code></p>
+<pre><code class="bash">12:03:19.528 [http-bio-8080-exec-10] INFO  ValidationServiceImpl.java:75 - WsValidateDocument: begin
+12:03:19.677 [http-bio-8080-exec-10] INFO  SignedDocumentValidator.java:390 - Document validation...
+12:03:19.689 [http-bio-8080-exec-10] INFO  CRLCertificateVerifier.java:67 - No CRL found for: 64f7eb544f1f9504d378e58d60441d37b40654a882922ce33adbc75ddb81ca98
+12:03:19.726 [http-bio-8080-exec-10] INFO  ValidationServiceImpl.java:110 - Validation completed. Total signature count: 1 and valid signature count: 0
+12:03:19.726 [http-bio-8080-exec-10] INFO  ValidationServiceImpl.java:116 - WsValidateDocument: end
 </code></pre>
 
 <h3 id="test-structure">Test structure</h3>
@@ -365,99 +392,139 @@ public void validSignaturesRemainValidAfterSigningCertificateExpires() {
 has been signed with a certificate that has expired after signing.</p>
 <h2 id="description-of-test-cases-and-test-data">Description of Test Cases and Test Data</h2>
 <ol>
-<li>The PDF-file is signed with Certificate that does does not have the 
+<li>The PDF-file is signed with Certificate that does does not have the
    "nonRepudation" bit set (PAdES Baseline LT)<ul>
-<li><strong>NFR-ID:</strong> <ul>
+<li><strong>NFR-ID:</strong><ul>
 <li>DSS-CRT-NONREPU</li>
 </ul>
 </li>
-<li><strong>FILES:</strong> <ul>
+<li><strong>FILES:</strong><ul>
 <li>hellopades-pades-lt-sha256-auth.pdf</li>
+</ul>
+</li>
+<li><strong>EXPECTE RESULT:</strong><ul>
+<li>Signing Certificate without NonRepudiation key usage attribute should <strong>fail</strong></li>
 </ul>
 </li>
 </ul>
 </li>
 <li>The PDF-file has got signatures of two different profiles - PAdES Baseline-B and PAdES-LTA<ul>
-<li>""FILE:"" <ul>
+<li>""FILE:""<ul>
 <li>hellopades-sigb-signed.pdf</li>
+</ul>
+</li>
+<li><strong>EXPECTE RESULT:</strong><ul>
+<li>Signature profile Baseline - LTA should pass and signature baseline-b should <strong>fail</strong></li>
 </ul>
 </li>
 </ul>
 </li>
 <li>The PDF has PAdES-LT profile signature, but no OCSP confirmation<ul>
-<li><strong>NFR-ID:</strong> <ul>
+<li><strong>NFR-ID:</strong><ul>
 <li>DSS-SIG-NO-OCSP</li>
 </ul>
 </li>
-<li><strong>FILES:</strong> <ul>
+<li><strong>FILES:</strong><ul>
 <li>hellopades-lta-no-ocsp.pdf</li>
+</ul>
+</li>
+<li><strong>EXPECTE RESULT:</strong><ul>
+<li>Document with no ocsp or crl in signature should <strong>fail</strong></li>
 </ul>
 </li>
 </ul>
 </li>
 <li>The PDF-file has PAdES-LT profile signature and an OCSP confirmation that is more than 15 minutes later than the signature’s Time Stamp.<ul>
-<li><strong>NFR-ID:</strong> <ul>
+<li><strong>NFR-ID:</strong><ul>
 <li>DSS-SIG-OCSP-TS-WARN</li>
 </ul>
 </li>
-<li><strong>FILES:</strong> <ul>
+<li><strong>FILES:</strong><ul>
 <li>hellopades-lt-sha256-ocsp-15min.pdf</li>
+</ul>
+</li>
+<li><strong>EXPECTE RESULT:</strong><ul>
+<li>Document with ocsp over 15 min delay should <strong>pass</strong> but <strong>warn</strong></li>
 </ul>
 </li>
 </ul>
 </li>
 <li>The PDF-file has PAdES-LT profile signature and an OCSP confirmation more than 24 hours later than the signature’s Time Stamp.<ul>
-<li><strong>NFR-ID:</strong> <ul>
+<li><strong>NFR-ID:</strong><ul>
 <li>DSS-SIG-OCSP-TS-ERROR</li>
 </ul>
 </li>
-<li><strong>FILES:</strong> <ul>
+<li><strong>FILES:</strong><ul>
 <li>hellopades-lt-sha256-ocsp-25h.pdf</li>
+</ul>
+</li>
+<li><strong>EXPECTE RESULT:</strong><ul>
+<li>Document with over 24h delay should <strong>fail</strong></li>
 </ul>
 </li>
 </ul>
 </li>
 <li>The PDF-file has been signed with PAdES Baseline LT profile signature, signer’s certificate has been revoked.<ul>
-<li><strong>FILES:</strong> <ul>
+<li><strong>FILES:</strong><ul>
 <li>hellopades-lt-sha256-revoked.pdf</li>
+</ul>
+</li>
+<li><strong>EXPECTE RESULT:</strong><ul>
+<li>Document signed with revoked certificate should <strong>fail</strong></li>
 </ul>
 </li>
 </ul>
 </li>
 <li>The PDF-file has been signed with PAdES Baseline LTA profile signature, the signature contains CRL.<ul>
-<li><strong>FILES:</strong> <ul>
+<li><strong>FILES:</strong><ul>
 <li>hellopades-lta-no-ocsp.pdf</li>
 </ul>
 </li>
+<li><strong>EXPECTE RESULT:</strong><ul>
+<li>Document with no ocsp or crl in signature should <strong>fail</strong></li>
 </ul>
 </li>
-<li>The PDF-file has been signed with PadES-LT profile signature, file has corrupt Time Stamp. <ul>
-<li><strong>FILES:</strong> <ul>
+</ul>
+</li>
+<li>The PDF-file has been signed with PadES-LT profile signature, file has corrupt Time Stamp.<ul>
+<li><strong>FILES:</strong><ul>
 <li>hellopades-lt-sha256-rsa1024-invalid-ts.pdf - (test)</li>
+</ul>
+</li>
+<li><strong>EXPECTE RESULT:</strong><ul>
+<li>Document with invalid timestamp should <strong>fail</strong>.</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>The PDF-file has been signed with certificate that will expire in 7 days after signing (PAdES Baseline LT)<ul>
-<li><strong>FILES:</strong> <ul>
+<li><strong>FILES:</strong><ul>
 <li>hellopades-lt-sha256-rsa2048-7d.pdf</li>
 <li>hellopades-lt-sha256-rsa1024-no-expired.pdf</li>
+</ul>
+</li>
+<li><strong>EXPECTE RESULT:</strong><ul>
+<li>Document signed with certificate that expired after signing should <strong>pass</strong>.</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>SHA1, SHA256, RSA1024, RSA2048, ECDSA224, ECDSA 256 algorithms (PAdES Baseline LT)<ul>
-<li><strong>NFR-ID:</strong> <ul>
+<li><strong>NFR-ID:</strong><ul>
 <li>DSS-CRY-ALGOEXP</li>
 </ul>
 </li>
 <li><strong>FILES:</strong><ul>
 <li>hellopades-lt-sha512.pdf</li>
 <li>hellopades-lt-sha1.pdf</li>
-<li>hellopades-lt-sha256-ec256.pdf -(test) </li>
-<li>hellopades-lt-sha256-ec224.pdf - (test) </li>
-<li>hellopades-lt-sha256-rsa1024.pdf - (test) </li>
+<li>hellopades-lt-sha256-ec256.pdf -(test)</li>
+<li>hellopades-lt-sha256-ec224.pdf - (test)</li>
+<li>hellopades-lt-sha256-rsa1024.pdf - (test)</li>
 <li>hellopades-lt-sha256-rsa2048.pdf</li>
+</ul>
+</li>
+<li><strong>EXPECTE RESULT:</strong><ul>
+<li>Document signed with SHA1, SHA256, RSA1024, RSA2048, ECDSA224, ECDSA 256 algorithm should <strong>pass</strong></li>
 </ul>
 </li>
 </ul>
@@ -467,6 +534,10 @@ has been signed with a certificate that has expired after signing.</p>
 <li>hellopades-lt-sha256-rsa1023.pdf</li>
 </ul>
 </li>
+<li><strong>EXPECTE RESULT:</strong><ul>
+<li>Document signed with RSA1023 algorithm should <strong>pass</strong></li>
+</ul>
+</li>
 </ul>
 </li>
 <li>Encryption Algorithm RSA with 2047-bit keys (PAdES Baseline LT)<ul>
@@ -474,28 +545,40 @@ has been signed with a certificate that has expired after signing.</p>
 <li>hellopades-lt-sha256-rsa2047.pdf</li>
 </ul>
 </li>
+<li><strong>EXPECTE RESULT:</strong><ul>
+<li>Document signed with RSA2047 algorithm should <strong>pass</strong></li>
 </ul>
 </li>
-<li>hellopadess been signed with an expired certificate, where signing time is within the original validity period of the 
+</ul>
+</li>
+<li>hellopadess been signed with an expired certificate, where signing time is within the original validity period of the
    certificate, but OCSP confirmation and Time Stamp are current date (PAdES Baseline LT). <ul>
 <li><strong>FILES:</strong><ul>
 <li>hellopades-lt-sha256-rsa1024-expired1.pdf</li>
 <li>hellopades-lt-sha1-rsa1024-expired2.pdf</li>
 <li>hellopades-lt-sha256-rsa1024-expired2.pdf</li>
-<li>hellopades-lt-sha256-rsa2048-expired.pdf </li>
+<li>hellopades-lt-sha256-rsa2048-expired.pdf</li>
+</ul>
+</li>
+<li><strong>EXPECTE RESULT:</strong><ul>
+<li>Document signed with expired certificate should <strong>fail</strong></li>
 </ul>
 </li>
 </ul>
 </li>
-<li>PDF-file’s signature has OCSP confirmation before Time Stamp <ul>
+<li>PDF-file’s signature has OCSP confirmation before Time Stamp<ul>
 <li><strong>FILES:</strong><ul>
 <li>hellopades-lt-sha256-rsa2048-ocsp-before-ts.pdf</li>
+</ul>
+</li>
+<li><strong>EXPECTE RESULT:</strong><ul>
+<li>Documetn signed with ocsp time value before best signature time should <strong>fail</strong></li>
 </ul>
 </li>
 </ul>
 </li>
 <li>PDF file with a serial signature<ul>
-<li><strong>NFR-ID:</strong> <ul>
+<li><strong>NFR-ID:</strong><ul>
 <li>DSS-SIG-MULTISIG</li>
 </ul>
 </li>
@@ -503,21 +586,29 @@ has been signed with a certificate that has expired after signing.</p>
 <li>hellopades-lt1-lt2-Serial.pdf</li>
 </ul>
 </li>
+<li><strong>EXPECTE RESULT:</strong><ul>
+<li>Document signed with multiple signers with serial signatures should <strong>pass</strong></li>
+</ul>
+</li>
 </ul>
 </li>
 <li>PDF file with a parallel signature<ul>
-<li><strong>NFR-ID:</strong> <ul>
+<li><strong>NFR-ID:</strong><ul>
 <li>DSS-SIG-MULTISIG</li>
 </ul>
 </li>
 <li><strong>FILES:</strong><ul>
-<li>hellopades-lt1-lt2-parallel.pdf (OOTEL)</li>
+<li>hellopades-lt1-lt2-parallel.pdf (WAITING)</li>
+</ul>
+</li>
+<li><strong>EXPECTE RESULT:</strong><ul>
+<li>Document signed with multiple signers with parallel signatures should <strong>fail</strong></li>
 </ul>
 </li>
 </ul>
 </li>
 <li>PDF file without a timestamp<ul>
-<li><strong>NFR-ID:</strong> <ul>
+<li><strong>NFR-ID:</strong><ul>
 <li>DSS-SIG-TIMESTAMP</li>
 </ul>
 </li>
@@ -525,10 +616,14 @@ has been signed with a certificate that has expired after signing.</p>
 <li>hellopades-lt-sha256-rsa2048-no-ts.pdf</li>
 </ul>
 </li>
+<li><strong>EXPECTE RESULT:</strong><ul>
+<li>Document signed with no timestamp should <strong>fail</strong></li>
+</ul>
+</li>
 </ul>
 </li>
 <li>PDF file where signature timestamp is after certificate expiry date.<ul>
-<li><strong>NFR-ID:</strong> <ul>
+<li><strong>NFR-ID:</strong><ul>
 <li>DSS-SIG-VALID_CERTS</li>
 </ul>
 </li>
@@ -536,15 +631,23 @@ has been signed with a certificate that has expired after signing.</p>
 <li>hellopades-lt-sha256-rsa2048-expired.pdf</li>
 </ul>
 </li>
+<li><strong>EXPECTE RESULT:</strong><ul>
+<li>Document signed with expired certificate should <strong>fail</strong></li>
+</ul>
+</li>
 </ul>
 </li>
 <li>PDF file signed with 223 bit ECDSA key (PAdES Baseline LT)<ul>
-<li><strong>NFR-ID:</strong> <ul>
+<li><strong>NFR-ID:</strong><ul>
 <li>DSS-CRY-ECDSAKEY</li>
 </ul>
 </li>
 <li><strong>FILES:</strong><ul>
 <li>No test file.</li>
+</ul>
+</li>
+<li><strong>EXPECTE RESULT:</strong><ul>
+<li>Document signed with ECDSA 223 algorithm should <strong>pass</strong>.</li>
 </ul>
 </li>
 </ul>
@@ -560,11 +663,19 @@ has been signed with a certificate that has expired after signing.</p>
 <li>egovernment-benchmark_lta_3-8mb.pdf</li>
 </ul>
 </li>
+<li><strong>EXPECTE RESULT:</strong><ul>
+<li>Bigger documents with valid signature should <strong>pass</strong></li>
+</ul>
+</li>
 </ul>
 </li>
 <li>Message-digest attribute value does not match calculated value<ul>
 <li><strong>FILES:</strong><ul>
 <li>hellopades-lt1-lt2-parallel3.pdf</li>
+</ul>
+</li>
+<li><strong>EXPECTE RESULT:</strong><ul>
+<li>Document with no qualified and without SSCD should <strong>fail</strong></li>
 </ul>
 </li>
 </ul>
