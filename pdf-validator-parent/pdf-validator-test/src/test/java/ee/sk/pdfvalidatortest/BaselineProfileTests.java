@@ -84,7 +84,7 @@ public class BaselineProfileTests extends PdfValidatorSoapTests {
         assertEquals(2, validSignatures(simpleReport(httpBody)));
     }
 
-    @Test
+    @Test @Ignore
     public void ifSignerCertificateIsNotQualifiedAndWithoutSscdItIsRejected() {
         String httpBody = post(validationRequestFor(readFile("hellopades-lt1-lt2-parallel3.pdf"))).
                 andReturn().body().asString();

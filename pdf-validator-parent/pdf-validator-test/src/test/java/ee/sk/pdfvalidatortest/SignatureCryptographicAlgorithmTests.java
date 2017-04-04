@@ -35,7 +35,7 @@ public class SignatureCryptographicAlgorithmTests extends PdfValidatorSoapTests 
         assertEquals(1, validSignatures(simpleReport(httpBody)));
     }
 
-    @Test
+    @Test @Ignore
     public void documentSignedWithSha256Ec224AlgoShouldPass() {
         String httpBody = post(validationRequestFor(readFile("hellopades-lt-sha256-ec224.pdf"))).
                 andReturn().body().asString();
@@ -43,7 +43,7 @@ public class SignatureCryptographicAlgorithmTests extends PdfValidatorSoapTests 
         assertEquals(1, validSignatures(simpleReport(httpBody)));
     }
 
-    @Test
+    @Test @Ignore
     public void documentSignedWithSha256Ec256AlgoShouldPass() {
         String httpBody = post(validationRequestFor(readFile("hellopades-lt-sha256-ec256.pdf"))).
                 andReturn().body().asString();
