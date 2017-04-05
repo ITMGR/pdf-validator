@@ -9,12 +9,13 @@ Appendix 4 - Validation Constraint Configuration
             * `Id` - [*] character can be used to indicate that any policy is acceptable.
               It is also possible to define an exhaustive list of acceptable policies, i.e. ANY_POLICY, NO_POLICY etc.
               It’s also possible to define an URN: urn:oid:1.2.250.190.50.1.2.1
-        	* `AcceptableSignatureFormats Level="FAIL` - List of ID’s of acceptable Signature formats.
+        	* `AcceptableSignatureFormats Level="FAIL"` - List of ID’s of acceptable Signature formats.
                * `Id` - ID of acceptale Signature Format, i.e. PAdES_BASELINE_LT, PAdES_BASELINE_LTA
+            * 'OcspTimeRangeBeforeTimeStamp Level="FAIL"` - Determines period of time (in minutes) in which OCSP production time is valid before Time Stamp
             * `OcspDelayToBestSignatureTime Unit="MINUTES"` - Determines the period of time (in minutes) between Signing Time and OCSP Time Stamp. Different levels of return value, based on the period difference between Signing Time and OCSP Time Stamp
                * `Warn` - Determines conditions when a warning is returned for OCSP Delay check
                  * `MinimalDelay` - Determines a period (in minutes) during which an OCSP Time Stamp
-               * `ail` - Determines conditions when OCSP Delay check fails
+               * `Fail` - Determines conditions when OCSP Delay check fails
                  * `MinimalDelay` - Determines a period (in minutes) during which an OCSP Time Stamp
             * `ReferenceDataExistence Level="FAIL"` - True/false
             * `ReferenceDataIntact Level="FAIL"	` - True/false
