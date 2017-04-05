@@ -13,7 +13,7 @@ way to run this service is to issue a command shown below.
 **Run PDF validator monitoring Service**
 
 ```bash
-java -jar pdf-validator-monitoring-1.0.1.RC1.jar
+java -jar pdf-validator-monitoring-1.0.2.RC1.jar
 ```
 
 Default parameters for monitoring application are:
@@ -30,7 +30,7 @@ monitoring.requestInterval=300000
 ```
 
 You can override these properties by placing application.properties file
-in same directory where the `pdf-validator-monitoring-1.0.1.RC1.jar` is
+in same directory where the `pdf-validator-monitoring-1.0.2.RC1.jar` is
 located.
 
 Command line arguments
@@ -42,7 +42,7 @@ can pass in configuration as command line arguments.
 following command line options are available:
 
 ```bash
-java -jar pdf-validator-monitoring-1.0.1.RC1.jar \
+java -jar pdf-validator-monitoring-1.0.2.RC1.jar \
 	--server.port=4500 \
 	--monitoring.host=http://localhost:8080 \
 	--monitoring.path=/pdf-validator-webapp/wservice/validationService \

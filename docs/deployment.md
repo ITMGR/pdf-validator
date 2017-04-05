@@ -146,15 +146,15 @@ This step assumes that the project has already been built previously.
 1.  Navigate the directory that holds the ZIP file (if you built the ZIP
     file using Maven, navigate to
     directory `PROJECT_BASE_DIRECTORY/pdf-validator-distribution/target`).
-2.  Copy `pdf-validator-distribution-1.0.1.RC1-distribution.zip` file
+2.  Copy `pdf-validator-distribution-1.0.2.RC1-distribution.zip` file
     outside `PROJECT_BASE_DIRECTORY`. ZIP file contents will look like
     the following:
 
-	    pdf-validator-distribution-1.0.1.RC1-distribution\
+	    pdf-validator-distribution-1.0.2.RC1-distribution\
 	    └── bin
-	    ├── pdf-validator-monitoring-1.0.1.RC1.jar # Monitoring web service (fat JAR)\
-	    ├── pdf-validator-tsl-downloader-1.0.1.RC1.jar   # TSL File Downloader when (fat JAR)\
-     	    └── pdf-validator-webapp-1.0.1.RC1.war # PDF Validator webap
+	    ├── pdf-validator-monitoring-1.0.2.RC1.jar # Monitoring web service (fat JAR)\
+	    ├── pdf-validator-tsl-downloader-1.0.2.RC1.jar   # TSL File Downloader when (fat JAR)\
+     	    └── pdf-validator-webapp-1.0.2.RC1.war # PDF Validator webap
 
 3.  Unzip the ZIP-file in directory for example into directory `~/pdfvalidator/`
 4.  Install Tomcat 7. For a quick manual install, one can use the
@@ -179,9 +179,9 @@ This step assumes that the project has already been built previously.
 	    │ ├── webapps
 	    │ └── work
 	    └── bin - Unzipped PDF Validator contents
-	    ├── pdf-validator-monitoring-1.0.1.RC1.jar
-	    ├── pdf-validator-tsl-downloader-1.0.1.RC1.jar
-	    └── pdf-validator-webapp-1.0.1.RC1.war
+	    ├── pdf-validator-monitoring-1.0.2.RC1.jar
+	    ├── pdf-validator-tsl-downloader-1.0.2.RC1.jar
+	    └── pdf-validator-webapp-1.0.2.RC1.war
 
 
 5.  Create context by issuing following commands relative to
@@ -193,7 +193,7 @@ This step assumes that the project has already been built previously.
 6.  Copy below contents to `pdf-validator-webapp.xml`
 
 	    <xml version="1.0" encoding="UTF-8"\>    	
-	    <Context path="/pdf-validator-webapp" docBase="/home/vagrant/pdfvalidator/bin/pdf-validator-webapp-1.0.1.RC1.war" />
+	    <Context path="/pdf-validator-webapp" docBase="/home/vagrant/pdfvalidator/bin/pdf-validator-webapp-1.0.2.RC1.war" />
 
 7.  Start the web service by issuing following command relative to
 `~/pdf-validator`
@@ -278,7 +278,7 @@ Easiest way is to look for below shown lines in `catalina.out` log files:
 
 ### Using browser to check that service works
 
-After checking logs for errors You can navigate to `http://<server-ip>:8080/pdf-validator-webapp-1.0.1.RC1/wservice` with browser to
+After checking logs for errors You can navigate to `http://<server-ip>:8080/pdf-validator-webapp-1.0.2.RC1/wservice` with browser to
 check if web service has started correctly and see similar web page as shown below.
 
 ![WSDL Endpoints after service has started](img/working_web_service.png)
