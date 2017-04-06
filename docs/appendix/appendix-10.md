@@ -7,7 +7,7 @@ the DSS fork (these changes largely overlap with Estonian validation constraints
 
 * Signature level must be at “LT” or “LTA”. The signature must already contain an OCSP response 
   and a signature timestamp (the service will not attempt to request new OCSP or timestamp tokens during validation).
-* The provided OCSP response must be after the signature timestamp, but not more than 24 hours later. 
+* The provided OCSP response can be 10 minutes before the signature timestamp, and not more than 24 hours after.
   A warning is given if the time difference is more than 15 minutes but less than 24 hours.
 * Certificate Revocation Lists (CRL) are not supported; OCSP protocol is mandated.
 * Turned off unnecessary functionality (the service only allows only PDF files, not ASiC). This can later be turned back on as needed.
